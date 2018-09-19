@@ -1,0 +1,47 @@
+{
+    "name": "vue-form-loader",
+    "version": "0.0.1",
+    "description": "Directive which adds a button loader when a form submits",
+    "main": "dist/index.js",
+    "jsnext:main": "src/index.js",
+    "scripts": {
+        "start": "webpack-dev-server --config docs/webpack.config.js",
+        "build": "rm -rf dist && NODE_ENV=production webpack",
+        "prepublish": "npm run test; npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adaptivemedia/vue-form-loader.git"
+    },
+    "keywords": [
+        "adaptive media",
+        "vue",
+        "form loader",
+        "spinner"
+    ],
+    "author": "Victor Eliasson",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/adaptivemedia/vue-form-loader/issues"
+    },
+    "homepage": "https://github.com/adaptivemedia/vue-form-loader",
+    "peerDependencies": {
+        "vue": "^2.3.0"
+    },
+    "devDependencies": {
+        "babel-core": "^6.24.1",
+        "babel-loader": "^7.0.0",
+        "babel-plugin-transform-object-rest-spread": "^6.16.0",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-preset-env": "^1.4.0",
+        "css-loader": "^0.28.1",
+        "node-sass": "^4.5.3",
+        "sass-loader": "^6.0.6",
+        "vue": "^2.3.0",
+        "vue-loader": "^12.0.3",
+        "vue-template-compiler": "^2.3.0",
+        "webpack": "^2.3.3",
+        "webpack-dev-server": "^2.4.2",
+        "webpack-merge": "^4.1.0"
+    }
+}
