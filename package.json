@@ -1,13 +1,11 @@
 {
     "name": "vue-form-loader",
     "version": "0.0.1",
-    "description": "Directive which adds a button loader when a form submits",
+    "description": "Directive which handles loading for when the form submits",
     "main": "dist/index.js",
-    "jsnext:main": "src/index.js",
     "scripts": {
         "start": "webpack-dev-server --config docs/webpack.config.js",
-        "build": "rm -rf dist && NODE_ENV=production webpack",
-        "prepublish": "npm run test; npm run build"
+        "build": "rm -rf dist && NODE_ENV=production webpack"
     },
     "repository": {
         "type": "git",

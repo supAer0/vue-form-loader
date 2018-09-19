@@ -1,5 +1,6 @@
 const loadingClass = 'is-loading';
-const FormLoader = {
+
+export const FormLoader = {
     // Usage: <form v-loader>
     bind: function (form, binding) {
         form.addEventListener('submit', function (event) {
@@ -21,18 +22,17 @@ const FormLoader = {
     }
 };
 
-function install(Vue) {
+export function install(Vue) {
     if (install.installed) return;
     install.installed = true;
 
     Vue.directive('loader', FormLoader);
 }
 
-var plugin = {
-    install
+const plugin = {
+    install,
 };
 
-// Auto-install
 let GlobalVue = null;
 if (typeof window !== 'undefined') {
     GlobalVue = window.Vue;
@@ -43,6 +43,4 @@ if (GlobalVue) {
     GlobalVue.use(plugin);
 }
 
-exports.install = install;
-exports.FormLoader = FormLoader;
-exports['default'] = plugin;
+export default plugin;
