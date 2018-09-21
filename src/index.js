@@ -1,36 +1,50 @@
-const loadingClass = 'is-loading';
+const options = {
+    loadingClass: 'is-loading'
+};
 
-export const FormLoader = {
-    // Usage: <form v-loader>
+const bindEventToForm = function (form) {
+    form.addEventListener('submit', () => {
+        const submit = form.querySelector('[type="submit"]');
+        submit.classList.add(options.loadingClass);
+        submit.disabled = true;
+    });
+};
+
+const FormLoaderDirective = {
+    // Usage: <form v-loading>
     bind: function (form, binding) {
-        form.addEventListener('submit', function (event) {
-            const submit = form.querySelector('[type="submit"]');
-            submit.classList.add(loadingClass);
-            submit.disabled = true;
-        });
+        bindEventToForm(form);
     },
-    // Usage: <form v-loader="model">
+    // Usage: <form v-loading="model">
     update: function (form, binding) {
         const submit = form.querySelector('[type="submit"]');
         if (binding.value) {
-            submit.classList.add(loadingClass);
+            submit.classList.add(options.loadingClass);
             submit.disabled = true;
         } else {
-            submit.classList.remove(loadingClass);
+            submit.classList.remove(options.loadingClass);
             submit.disabled = false;
         }
-    }
+    },
 };
 
 export function install(Vue) {
     if (install.installed) return;
     install.installed = true;
 
-    Vue.directive('loader', FormLoader);
+    Vue.directive('loading', FormLoaderDirective);
 }
 
-const plugin = {
+const FormLoader = {
     install,
+    autoBindToForms: function() {
+        Array.from(document.querySelectorAll('form')).forEach(form => {
+            bindEventToForm(form);
+        });
+    },
+    set className(value) {
+        options.loadingClass = value;
+    }
 };
 
 let GlobalVue = null;
@@ -40,7 +54,7 @@ if (typeof window !== 'undefined') {
     GlobalVue = global.Vue;
 }
 if (GlobalVue) {
-    GlobalVue.use(plugin);
+    GlobalVue.use(FormLoader);
 }
 
-export default plugin;
+export default FormLoader;
