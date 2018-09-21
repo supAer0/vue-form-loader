@@ -3,7 +3,7 @@
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-form-loader.svg?style=flat-square)](https://npmjs.com/package/vue-form-loader)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
-Us ethis Vue directive to automatically add a button loader on a `<form>`-element.
+Use this Vue directive to add a loader on a `<form>`s submit event.
 
 ## Installation
 
@@ -21,24 +21,38 @@ npm install vue-form-loader --save
 
 ## Usage
 
-Use the directive:
+Import the directive and use it:
 
 ```javascript
-// in app.js
+// Eg. in app.js
 import FormLoader  from "vue-form-loader";
 Vue.use(FormLoader);
 ```
 
-Add the directive to a regular `<form>`:
+There are several ways to use the directive on a `<form>`.
+
+#### Bind the directive automatically to all `<form>` elements:
+```js
+// Eg. in app.js
+const app = new Vue({
+    el: '#app',
+    mounted() {
+        FormLoader.autoBindToForms();
+    }
+});
+```
+
+#### Add the directive to a regular `<form>`:
 ```html
-<form v-loader>
+<form v-loading>
     <button type="submit">Submit form</button>
 </form>
 ```
-or add the directive to a Vue-component `<form>`:
+
+#### Add the directive to a Vue-component `<form>` to sync the loading state:
 ```html
 <template>
-    <form v-loader="loading">
+    <form v-loading="loading">
         <button type="submit">Submit form</button>
     </form>
 </template>
@@ -53,8 +67,11 @@ or add the directive to a Vue-component `<form>`:
 </script>
 ```
 
-You need to create the css for button loader youself. When a form submits,
-the class `is-loading` will be added to the submit button (must be of type="submit").
+### The loader class
+You need to create the css for button loader yourself. When a form submits,
+the class `is-loading` will be added to the submit button (must be of `type="submit").
+
+To change which class the directive adds/removes:, set `FormLoader.loadingClass` in your `app.js`
 
 ### Testing
 

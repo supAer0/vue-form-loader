@@ -42,7 +42,7 @@ const FormLoader = {
             bindEventToForm(form);
         });
     },
-    set className(value) {
+    set loadingClass(value) {
         options.loadingClass = value;
     }
 };
