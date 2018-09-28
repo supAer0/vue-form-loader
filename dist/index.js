@@ -158,7 +158,7 @@ module.exports = g;
                 submit.disabled = true;
             } else {
                 options.loadingClasses.forEach(c => {
-                    submit.classList.add(c);
+                    submit.classList.remove(c);
                   })
                 submit.disabled = false;
             }
