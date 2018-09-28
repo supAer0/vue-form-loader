@@ -1,11 +1,13 @@
 const options = {
-    loadingClass: 'is-loading'
+    loadingClasses: ['is-loading']
 };
 
 const bindEventToForm = function (form) {
     form.addEventListener('submit', () => {
         const submit = form.querySelector('[type="submit"]');
-        submit.classList.add(options.loadingClass);
+        options.loadingClasses.forEach(c => {
+          submit.classList.add(c);
+        })
         submit.disabled = true;
     });
 };
@@ -19,10 +21,14 @@ const FormLoaderDirective = {
     update: function (form, binding) {
         const submit = form.querySelector('[type="submit"]');
         if (binding.value) {
-            submit.classList.add(options.loadingClass);
+          options.loadingClasses.forEach(c => {
+            submit.classList.add(c);
+          })
             submit.disabled = true;
         } else {
-            submit.classList.remove(options.loadingClass);
+          options.loadingClasses.forEach(c => {
+            submit.classList.remove(c);
+          })
             submit.disabled = false;
         }
     },
@@ -42,8 +48,12 @@ const FormLoader = {
             bindEventToForm(form);
         });
     },
-    set loadingClass(value) {
-        options.loadingClass = value;
+    set loadingClasses(values) {
+      options.loadingClasses = []
+      arr = values.split(/\s/)
+      arr.forEach(c => {
+        options.loadingClasses.push(c);
+      })
     }
 };
 
