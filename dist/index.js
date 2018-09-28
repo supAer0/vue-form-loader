@@ -181,7 +181,7 @@ module.exports = g;
         },
         set className(value) {
             options.loadingClasses = []
-            arr = values.split(/\s/)
+            arr = value.split(/\s/)
             arr.forEach(c => {
               options.loadingClasses.push(c);
             })
