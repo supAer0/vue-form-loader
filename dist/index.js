@@ -130,7 +130,7 @@ module.exports = g;
     });
     exports.install = install;
     var options = {
-        loadingClasses: ['is-loading']
+        loadingClasses: ['m-loader', 'm-loader--light', 'm-loader--right']
     };
 
     var bindEventToForm = function bindEventToForm(form) {
